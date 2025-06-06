@@ -1,0 +1,693 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>ওয়েব ডিজাইন এক্সপ্লেইনড: ভবিষ্যৎ প্রফেশনালদের জন্য মূল ধারণা</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="206935d6-d11d-805e-b0ee-c0b8457c9b7a" class="page sans"><header><h1 class="page-title">ওয়েব ডিজাইন এক্সপ্লেইনড: ভবিষ্যৎ প্রফেশনালদের জন্য মূল ধারণা</h1><p class="page-description"></p></header><div class="page-body"><p id="206935d6-d11d-802b-be48-c7deeb06095c" class="">আপনি কি জানেন যে প্রতিদিন ৫০০ কোটির বেশি মানুষ ইন্টারনেট ব্যবহার করে?</p><p id="206935d6-d11d-806e-9463-f57811a9c2a4" class="">এই বিশাল সংখ্যক মানুষ বিভিন্ন ওয়েবসাইট ভিজিট করে।</p><p id="206935d6-d11d-80b4-ba28-c0382a042b22" class="">কিন্তু <strong>ওয়েব ডিজাইন</strong> কী? এটা কীভাবে কাজ করে?</p><p id="206935d6-d11d-804d-9946-c3c0c48ed752" class="">এই প্রশ্নগুলোর উত্তর জানতে পারবেন আজকের এই ব্লগে।</p><p id="206935d6-d11d-80fe-968d-e25073fc2cd6" class=""><em>[ছবির জায়গা: ডিজিটাল যুগে ইন্টারনেট ব্যবহারের ইনফোগ্রাফিক - Statista বা Internet World Stats থেকে পাবেন]</em></p><h2 id="206935d6-d11d-8006-84aa-fa219c38f957" class="">ওয়েবসাইট আসলে কী?</h2><p id="206935d6-d11d-80a1-88d5-c325b1eb8e4a" class="">প্রথমেই জানা দরকার ওয়েবসাইট কী।</p><p id="206935d6-d11d-807d-903b-e5b8fc04409a" class="">ওয়েবসাইট হলো ইন্টারনেটে থাকা একটি ডিজিটাল পেজ বা পৃষ্ঠা।</p><p id="206935d6-d11d-8091-a047-c78d18f2b3c7" class="">যেমন আপনি বই পড়েন, ঠিক তেমনি ওয়েবসাইট হলো ডিজিটাল বই।</p><p id="206935d6-d11d-80b3-8f2d-c4dd2560c7aa" class="">Facebook, Google, YouTube - এগুলো সবই ওয়েবসাইট।</p><p id="206935d6-d11d-80c8-b58f-d7f287400462" class="">আর মোবাইল অ্যাপ হলো ফোনে ব্যবহার করার জন্য বিশেষ প্রোগ্রাম।</p><p id="206935d6-d11d-8087-b78c-e06c9789e855" class="">WhatsApp, Instagram - এগুলো মোবাইল অ্যাপ।</p><h2 id="206935d6-d11d-801b-a144-c9e10f61bb47" class="">ওয়েব ডিজাইন কী?</h2><p id="206935d6-d11d-80a5-8988-e6c862e67b7d" class=""><strong>ওয়েব ডিজাইন</strong> হলো ওয়েবসাইট তৈরি করার শিল্প।</p><p id="206935d6-d11d-8094-b572-ecadd802a27e" class="">এটা কোডিং থেকে আলাদা।</p><p id="206935d6-d11d-8078-bffa-d60cc37e5a80" class="">ওয়েব ডিজাইনে আপনি সিদ্ধান্ত নেন:</p><ul id="206935d6-d11d-8014-a07b-f568ba846d19" class="bulleted-list"><li style="list-style-type:disc">ওয়েবসাইট দেখতে কেমন হবে</li></ul><ul id="206935d6-d11d-803f-8912-eb413c6f17db" class="bulleted-list"><li style="list-style-type:disc">কোন রঙ ব্যবহার হবে</li></ul><ul id="206935d6-d11d-8055-bb95-fd71c86e15d0" class="bulleted-list"><li style="list-style-type:disc">ছবি কোথায় বসবে</li></ul><ul id="206935d6-d11d-80b5-9a53-d8547fc7feb0" class="bulleted-list"><li style="list-style-type:disc">লেখা কেমন দেখাবে</li></ul><p id="206935d6-d11d-80f0-9ac4-c3a4ea0d86b5" class=""><em>[ছবির জায়গা: ওয়েব ডিজাইন প্রসেসের ফ্লোচার্ট - Dribbble বা Behance থেকে পাবেন]</em></p><h3 id="206935d6-d11d-8061-ad82-e17afcc1fea1" class="">ওয়েব ডিজাইনের মূল উদ্দেশ্য কী?</h3><p id="206935d6-d11d-80fe-af20-c80dcdc06227" class="">ওয়েব ডিজাইনের তিনটি মূল উদ্দেশ্য:</p><p id="206935d6-d11d-80a6-ab7d-e893a50718e9" class="">১. <strong>দর্শকদের আকর্ষণ করা</strong><br/>২. <br/><strong>তথ্য সহজভাবে উপস্থাপন করা</strong></p><p id="206935d6-d11d-8040-8fe5-c6e5db326aec" class="">৩. <strong>ব্যবহারকারীদের সুবিধা প্রদান করা</strong></p><p id="206935d6-d11d-80ed-9ce1-e644c5e5d5f2" class="">আপনি যখন কোনো দোকানে যান, সেটা সুন্দর সাজানো থাকলে ভালো লাগে, তাই না?</p><p id="206935d6-d11d-8016-b8dd-c847d1fdeb9f" class="">ওয়েবসাইটও তেমনি।</p><p id="206935d6-d11d-80f0-bdb3-c4bc25c6ead8" class="">সুন্দর ডিজাইন মানুষকে বেশি সময় থাকতে উৎসাহিত করে।</p><h2 id="206935d6-d11d-8060-92d4-e5e376664b87" class="">ওয়েব ডিজাইনার আসলে কী করেন?</h2><p id="206935d6-d11d-801f-9e15-da9ff94a6717" class="">একজন <strong>ওয়েব ডিজাইনার</strong> যা করেন:</p><p id="206935d6-d11d-8063-8db8-cfc825d55a64" class=""><strong>গ্রাফিক্স তৈরি:</strong></p><ul id="206935d6-d11d-806d-a0f7-f8e0d7fd674f" class="bulleted-list"><li style="list-style-type:disc">লোগো ডিজাইন</li></ul><ul id="206935d6-d11d-804c-964a-c42250b2b8e6" class="bulleted-list"><li style="list-style-type:disc">ব্যানার তৈরি</li></ul><ul id="206935d6-d11d-8080-b639-f705224ba7c7" class="bulleted-list"><li style="list-style-type:disc">আইকন তৈরি</li></ul><p id="206935d6-d11d-801f-826f-f76b1b9f7cea" class=""><strong>লেআউট পরিকল্পনা:</strong></p><ul id="206935d6-d11d-80f5-a1f0-fb43a9a6a743" class="bulleted-list"><li style="list-style-type:disc">পেজের বিন্যাস ঠিক করা</li></ul><ul id="206935d6-d11d-8054-b5b3-c10cf0a6aac0" class="bulleted-list"><li style="list-style-type:disc">মেনুর অবস্থান নির্ধারণ</li></ul><p id="206935d6-d11d-800d-8ff5-d49a36576835" class=""><strong>রঙ ও ফন্ট নির্বাচন:</strong></p><ul id="206935d6-d11d-80b7-b417-efcb042aff0a" class="bulleted-list"><li style="list-style-type:disc">কোন রঙ ব্যবহার হবে</li></ul><ul id="206935d6-d11d-80ac-970c-e044c8a710f2" class="bulleted-list"><li style="list-style-type:disc">লেখার স্টাইল কেমন হবে</li></ul><p id="206935d6-d11d-80b8-b001-e5392c12a637" class=""><em>[ছবির জায়গা: ওয়েব ডিজাইনার ওয়ার্কফ্লো ডায়াগ্রাম - UXPin বা Figma কমিউনিটি থেকে পাবেন]</em></p><h2 id="206935d6-d11d-80d7-9676-fe86643189ab" class="">ওয়েব ডিজাইন কি কোডিং?</h2><p id="206935d6-d11d-80fb-b405-cc393477bf6f" class="">অনেকেই মনে করেন <strong>ওয়েব ডিজাইন</strong> মানেই কোডিং।</p><p id="206935d6-d11d-8089-b24e-e1f180b6aa3b" class="">এটা সম্পূর্ণ ভুল ধারণা।</p><p id="206935d6-d11d-8075-8f0b-d694c52786e9" class=""><strong>ওয়েব ডিজাইন</strong> = শিল্প + সৃজনশীলতা<br/><br/><strong>কোডিং</strong> = প্রোগ্রামিং + লজিক</p><p id="206935d6-d11d-8047-a43a-c25bd7adf0a8" class="">তবে আজকের যুগে দুটোই জানা দরকার।</p><p id="206935d6-d11d-80b1-9047-df4c89bd4c4d" class="">আমাদের <a href="https://learncomputer.in/course/website-design-training-in-habra/">ওয়েব ডিজাইন কোর্সে</a> দুটোই শেখানো হয়।</p><h3 id="206935d6-d11d-80ce-af06-f902bf3d323f" class="">ওয়েব ডিজাইনের মূল কনসেপ্ট</h3><p id="206935d6-d11d-8086-bc8b-e214204060fc" class=""><strong>১. ভিজ্যুয়াল হায়ারার্কি</strong></p><p id="206935d6-d11d-8078-b005-ca0e621fe249" class="">এটা মানে গুরুত্বপূর্ণ জিনিস আগে দেখানো।</p><p id="206935d6-d11d-808d-aaa0-d1c3dff52155" class="">যেমন হেডলাইন বড়, সাব-হেডলাইন ছোট।</p><p id="206935d6-d11d-8056-b782-e53f8946e343" class=""><strong>২. কালার থিওরি</strong></p><p id="206935d6-d11d-8098-a5f6-e89ee340c19c" class="">রঙের বিজ্ঞান।</p><p id="206935d6-d11d-80b7-aa35-d522049c819d" class="">কোন রঙ কোন আবেগ তৈরি করে।</p><p id="206935d6-d11d-8035-b4c0-c3edad422e67" class="">লাল = উত্তেজনা<br/>নীল = শান্তি<br/>সবুজ = প্রকৃতি<br/></p><p id="206935d6-d11d-80bb-9563-c83b854d7fdf" class=""><strong>৩. টাইপোগ্রাফি</strong></p><p id="206935d6-d11d-8080-96e6-f54b09b291d0" class="">লেখার শিল্প।</p><p id="206935d6-d11d-8048-be20-ec1153e0a581" class="">কোন ফন্ট কোথায় ব্যবহার করবেন।</p><p id="206935d6-d11d-8080-9045-d199350ec98e" class=""><em>[ছবির জায়গা: কালার হুইল ও টাইপোগ্রাফি উদাহরণ - Adobe Color বা Google Fonts থেকে পাবেন]</em></p><h2 id="206935d6-d11d-80fb-a8e4-e6aace1a554b" class="">ওয়েব ডিজাইন শেখার জন্য কী কী দরকার?</h2><p id="206935d6-d11d-808b-b1f6-f745123026e9" class=""><strong>প্রাথমিক দক্ষতা:</strong></p><ul id="206935d6-d11d-8088-a4e9-f97ae4093a08" class="bulleted-list"><li style="list-style-type:disc">কম্পিউটার চালানো</li></ul><ul id="206935d6-d11d-80b6-aecc-c9e768b6ec44" class="bulleted-list"><li style="list-style-type:disc">ইন্টারনেট ব্রাউজিং</li></ul><ul id="206935d6-d11d-80a6-9a6b-d05ab00553b0" class="bulleted-list"><li style="list-style-type:disc">সৃজনশীল চিন্তা</li></ul><p id="206935d6-d11d-8069-8494-ce7eba4d0662" class=""><strong>কোনো প্রাথমিক শিক্ষাগত যোগ্যতার বাধ্যবাধকতা নেই।</strong></p><p id="206935d6-d11d-8023-a853-d126c09d387b" class="">দশম শ্রেণি পাস হলেই যথেষ্ট।</p><p id="206935d6-d11d-80c9-8a5c-fb401c3b5d39" class="">আমাদের <a href="https://learncomputer.in/course/website-design-training-in-habra/">হাবড়ায় ওয়েব ডিজাইন ট্রেনিং</a> একদম শূন্য থেকে শেখানো হয়।</p><h3 id="206935d6-d11d-8081-b4e5-dd9b52bd6537" class="">ওয়েব ডিজাইন কি সহজ?</h3><p id="206935d6-d11d-80cd-a1d2-fa30a45dd0f8" class="">হ্যাঁ, <strong>ওয়েব ডিজাইন</strong> তুলনামূলক সহজ।</p><p id="206935d6-d11d-80e4-86ad-ff7cf1478349" class="">কারণ:</p><ul id="206935d6-d11d-8088-905e-e7ac7073d39e" class="bulleted-list"><li style="list-style-type:disc">লজিক্যাল চিন্তার চেয়ে সৃজনশীলতা বেশি দরকার</li></ul><ul id="206935d6-d11d-80ec-a582-d2fe58cef22d" class="bulleted-list"><li style="list-style-type:disc">ভিজ্যুয়াল টুলস ব্যবহার করা হয়</li></ul><ul id="206935d6-d11d-8026-ab83-cbfaed2b3d7b" class="bulleted-list"><li style="list-style-type:disc">অনুশীলনের মাধ্যমে দ্রুত শেখা যায়</li></ul><p id="206935d6-d11d-803d-bcd9-d678a3317f3d" class="">তবে ধৈর্য্য ও অনুশীলন অত্যন্ত জরুরি।</p><p id="206935d6-d11d-80fd-bf79-fbe93eae60ec" class=""><em>[ছবির জায়গা: লার্নিং কার্ভ চার্ট - Canva বা সাইকোলজি টুডে থেকে পাবেন]</em></p><h2 id="206935d6-d11d-8066-a00f-c26d27da7ba1" class="">ওয়েব ডিজাইনের প্রধান উপাদান</h2><h3 id="206935d6-d11d-8082-8c36-d0701fb4acc6" class="">১. HTML - হাইপারটেক্সট মার্কআপ ল্যাঙ্গুয়েজ</h3><p id="206935d6-d11d-8060-ab6c-d6ad9524979f" class="">HTML হলো ওয়েবসাইটের কঙ্কাল।</p><p id="206935d6-d11d-80f9-91dc-c24ede5545cb" class="">এটা ঠিক করে কোথায় কী থাকবে।</p><p id="206935d6-d11d-80ea-9391-dab398136c29" class="">যেমন:</p><ul id="206935d6-d11d-80f9-a170-fbbaa1ec6568" class="bulleted-list"><li style="list-style-type:disc">হেডিং কোথায়</li></ul><ul id="206935d6-d11d-803f-bbd8-db8b3abcd3cf" class="bulleted-list"><li style="list-style-type:disc">প্যারাগ্রাফ কোথায়</li></ul><ul id="206935d6-d11d-8076-b089-ed7b27891541" class="bulleted-list"><li style="list-style-type:disc">ছবি কোথায়</li></ul><h3 id="206935d6-d11d-8072-97ef-c310c89b45e5" class="">২. CSS - ক্যাসকেডিং স্টাইল শিট</h3><p id="206935d6-d11d-80ed-8dd5-c88c09a5500d" class="">CSS-এর পূর্ণরূপ Cascading Style Sheets।</p><p id="206935d6-d11d-80f5-a4e9-df86ad715f7f" class="">এটা ওয়েবসাইটের সৌন্দর্য্য নিয়ন্ত্রণ করে।</p><p id="206935d6-d11d-8024-b6d7-ceba71418c28" class="">রঙ, ফন্ট, সাইজ - সব CSS দিয়ে করা হয়।</p><h3 id="206935d6-d11d-8094-b37e-d0a0998bc066" class="">৩. JavaScript</h3><p id="206935d6-d11d-8005-b9ad-e4d2a4f49106" class="">JavaScript ওয়েবসাইটে জীবন আনে।</p><p id="206935d6-d11d-80be-8a7c-cc5a900ad564" class="">ইন্টারঅ্যাকটিভ এলিমেন্ট তৈরি করে।</p><p id="206935d6-d11d-805e-8f33-fc6a763dd427" class="">যেমন:</p><ul id="206935d6-d11d-8030-a538-e87ffea63f3b" class="bulleted-list"><li style="list-style-type:disc">বাটন ক্লিক করলে কী হবে</li></ul><ul id="206935d6-d11d-8014-967b-d447894fcd79" class="bulleted-list"><li style="list-style-type:disc">ফর্ম সাবমিট করার পর কী হবে</li></ul><p id="206935d6-d11d-804d-be86-ca80c1b6c070" class=""><em>[ছবির জায়গা: HTML, CSS, JavaScript এর ভূমিকা ব্যাখ্যাকারী ডায়াগ্রাম - W3Schools বা MDN Web Docs থেকে পাবেন]</em></p><h2 id="206935d6-d11d-80b4-a079-f90f78e66a6a" class="">ওয়েব ডিজাইন শেখার রোডম্যাপ</h2><p id="206935d6-d11d-8024-ba96-ff221bd89fb6" class=""><strong>প্রথম ধাপ: গ্রাফিক্স ডিজাইন</strong></p><ul id="206935d6-d11d-80ff-8faa-fc7db0c7a720" class="bulleted-list"><li style="list-style-type:disc">Photoshop শেখা</li></ul><ul id="206935d6-d11d-808d-9e22-f5be1fea8b9c" class="bulleted-list"><li style="list-style-type:disc">Color Theory বোঝা</li></ul><ul id="206935d6-d11d-8048-886d-d9e93b3b5a6d" class="bulleted-list"><li style="list-style-type:disc">Typography শেখা</li></ul><ul id="206935d6-d11d-80cb-ae1b-e0c5ba9b657f" class="bulleted-list"><li style="list-style-type:disc">Banner ও Flyer ডিজাইন</li></ul><p id="206935d6-d11d-8005-80f5-c420c533d0e3" class=""><strong>দ্বিতীয় ধাপ: ওয়েব টেকনোলজি</strong></p><ul id="206935d6-d11d-80a4-ab3b-c3b8fa674ba6" class="bulleted-list"><li style="list-style-type:disc">HTML শেখা</li></ul><ul id="206935d6-d11d-807b-836f-fdec52921aa4" class="bulleted-list"><li style="list-style-type:disc">CSS মাস্টার করা</li></ul><ul id="206935d6-d11d-80ce-abdb-f519f9dbb092" class="bulleted-list"><li style="list-style-type:disc">JavaScript বোঝা</li></ul><ul id="206935d6-d11d-803a-8d7d-f3adade564d7" class="bulleted-list"><li style="list-style-type:disc">Bootstrap শেখা</li></ul><p id="206935d6-d11d-80cc-b25c-e07d55e484c3" class=""><strong>তৃতীয় ধাপ: প্র্যাকটিস</strong></p><ul id="206935d6-d11d-8059-9d3b-c160bd5b6541" class="bulleted-list"><li style="list-style-type:disc">নিজের ওয়েবসাইট তৈরি</li></ul><ul id="206935d6-d11d-8004-a957-d27267715190" class="bulleted-list"><li style="list-style-type:disc">পোর্টফোলিও বানানো</li></ul><ul id="206935d6-d11d-8027-b321-f6cc07bfac6b" class="bulleted-list"><li style="list-style-type:disc">প্রজেক্ট করা</li></ul><p id="206935d6-d11d-8010-85f9-fa5ba8995d47" class="">আমাদের <a href="https://learncomputer.in/course/website-design-training-in-habra/">৬ মাসের কোর্সে</a> এই সব কিছুই শেখানো হয়।</p><h3 id="206935d6-d11d-8035-bbb9-d1f74a98cabd" class="">ওয়েব ডিজাইনের প্রকারভেদ</h3><p id="206935d6-d11d-80c2-be12-f91af2ddedfa" class=""><strong>রেস্পন্সিভ ওয়েব ডিজাইন:</strong><br/>মোবাইল, ট্যাবলেট, ডেস্কটপ সবেতে সুন্দর দেখায়।<br/></p><p id="206935d6-d11d-8019-91d0-f819bcdf478b" class=""><strong>ইউআই ডিজাইন:</strong><br/>ইউজার ইন্টারফেস ডিজাইন।<br/>কী দেখতে কেমন হবে।<br/></p><p id="206935d6-d11d-8028-905a-fdf2b1aee857" class=""><strong>ইউএক্স ডিজাইন:</strong><br/>ইউজার এক্সপেরিয়েন্স ডিজাইন।<br/>ব্যবহারকারীর অভিজ্ঞতা কেমন হবে।<br/></p><p id="206935d6-d11d-809e-bcd0-e0542a2cccda" class=""><em>[ছবির জায়গা: রেস্পন্সিভ ডিজাইন উদাহরণ - Bootstrap বা Material Design থেকে পাবেন]</em></p><h2 id="206935d6-d11d-800b-b98c-d5f45312f371" class="">ওয়েব ডিজাইনার হিসেবে ক্যারিয়ার</h2><h3 id="206935d6-d11d-8080-8515-c3c5e41a69cf" class="">চাকরির সুযোগ</h3><p id="206935d6-d11d-8082-b7cc-eb1166709318" class=""><strong>বেতন:</strong></p><ul id="206935d6-d11d-80f2-8849-e33aa2755aca" class="bulleted-list"><li style="list-style-type:disc">শুরুতে: ১৫,০০০ - ২৫,০০০ টাকা</li></ul><ul id="206935d6-d11d-8001-a649-d76cb508b08e" class="bulleted-list"><li style="list-style-type:disc">অভিজ্ঞতার সাথে: ১,০০,০০০ টাকার উপরে</li></ul><p id="206935d6-d11d-80f5-9b47-d52e7101bcc7" class=""><strong>চাকরির ধরন:</strong></p><ul id="206935d6-d11d-8099-b096-c8e5418b0b87" class="bulleted-list"><li style="list-style-type:disc">ওয়েব ডিজান্য কোম্পানি</li></ul><ul id="206935d6-d11d-8090-b956-c0d358abff02" class="bulleted-list"><li style="list-style-type:disc">ডিজিটাল এজেন্সি</li></ul><ul id="206935d6-d11d-808c-b805-d7db22d78b7d" class="bulleted-list"><li style="list-style-type:disc">ফ্রিল্যান্সিং</li></ul><ul id="206935d6-d11d-802d-be9a-d59c2d9cb403" class="bulleted-list"><li style="list-style-type:disc">নিজস্ব ব্যবসা</li></ul><p id="206935d6-d11d-80c7-b116-c28ee62b91a7" class="">আমাদের <a href="https://learncomputer.in/finding-a-web-design-and-development-job-near-habra/">ক্যারিয়ার গাইড</a> দেখতে পারেন।</p><h3 id="206935d6-d11d-8036-8629-ce1e9cb74881" class="">ফ্রিল্যান্সিং সুযোগ</h3><p id="206935d6-d11d-80b2-92bb-fc32582ee613" class=""><strong>জনপ্রিয় প্ল্যাটফর্ম:</strong></p><ul id="206935d6-d11d-801f-ba67-f2685d9b6974" class="bulleted-list"><li style="list-style-type:disc">Upwork</li></ul><ul id="206935d6-d11d-807a-9f74-c10c282d4e8c" class="bulleted-list"><li style="list-style-type:disc">Fiverr</li></ul><ul id="206935d6-d11d-8028-b620-f13dfbfe2a88" class="bulleted-list"><li style="list-style-type:disc">99designs</li></ul><ul id="206935d6-d11d-8029-adf3-ec74c01d1bb1" class="bulleted-list"><li style="list-style-type:disc">Freelancer</li></ul><p id="206935d6-d11d-8006-83a2-f5ec93b52603" class=""><strong>প্রজেক্টের ধরন:</strong></p><ul id="206935d6-d11d-80ef-aa7d-edd2c891087b" class="bulleted-list"><li style="list-style-type:disc">লোগো ডিজাইন: ৫০০ - ৫০০০ টাকা</li></ul><ul id="206935d6-d11d-8066-b2be-e405f81bbb90" class="bulleted-list"><li style="list-style-type:disc">ওয়েবসাইট ডিজাইন: ১০,০০০ - ১,০০,০০০ টাকা</li></ul><ul id="206935d6-d11d-8001-8323-fbf24e2083e6" class="bulleted-list"><li style="list-style-type:disc">ই-কমার্স সাইট: ৫০,০০০ - ৫,০০,০০০ টাকা</li></ul><p id="206935d6-d11d-800a-9fa8-fb33690c8914" class=""><em>[ছবির জায়গা: ফ্রিল্যান্সিং ইনকাম পটেনশিয়াল চার্ট - Upwork বা Freelancer-এর রিপোর্ট থেকে পাবেন]</em></p><h2 id="206935d6-d11d-801d-8b2c-c0ee998a6293" class="">আধুনিক ওয়েব ডিজাইন ট্রেন্ড</h2><h3 id="206935d6-d11d-8091-ad49-ffd421d91391" class="">২০২৫ সালের ট্রেন্ড</h3><p id="206935d6-d11d-80ae-ab1d-e82a89ca7c91" class=""><strong>মিনিমালিজম:</strong><br/>সাদাসিধে, পরিষ্কার ডিজাইন।<br/></p><p id="206935d6-d11d-80a3-b3ba-cc413929e877" class=""><strong>ডার্ক মোড:</strong><br/>কালো ব্যাকগ্রাউন্ড, সাদা লেখা।<br/></p><p id="206935d6-d11d-804d-999f-eadea24b1930" class=""><strong>মাইক্রো ইন্টারঅ্যাকশন:</strong><br/>ছোট ছোট অ্যানিমেশন।<br/></p><p id="206935d6-d11d-80ac-a34c-e78f3a96153e" class=""><strong>ভয়েস ইন্টারফেস:</strong><br/>কণ্ঠস্বর দিয়ে নিয়ন্ত্রণ।<br/></p><p id="206935d6-d11d-80ba-80a0-fc33c7ac1838" class=""><strong>এআই ইন্টিগ্রেশন:</strong><br/>কৃত্রিম বুদ্ধিমত্তার ব্যবহার।<br/></p><h3 id="206935d6-d11d-80b3-a46b-e1ed1a8d66a0" class="">জনপ্রিয় ডিজাইন টুলস</h3><p id="206935d6-d11d-8098-a787-fb4320654a70" class=""><strong>বিগিনার লেভেল:</strong></p><ul id="206935d6-d11d-8098-8e96-d6d369f60ade" class="bulleted-list"><li style="list-style-type:disc">Canva</li></ul><ul id="206935d6-d11d-805f-8332-cb9c0a91e8ef" class="bulleted-list"><li style="list-style-type:disc">Figma (ফ্রি)</li></ul><ul id="206935d6-d11d-8021-a384-d4f069362df7" class="bulleted-list"><li style="list-style-type:disc">Adobe XD (ফ্রি)</li></ul><p id="206935d6-d11d-80c2-9027-fce6e4ef6802" class=""><strong>প্রফেশনাল লেভেল:</strong></p><ul id="206935d6-d11d-80aa-8ffb-e192e35c24d0" class="bulleted-list"><li style="list-style-type:disc">Adobe Photoshop</li></ul><ul id="206935d6-d11d-8088-85c0-de31ca4ac796" class="bulleted-list"><li style="list-style-type:disc">Adobe Illustrator</li></ul><ul id="206935d6-d11d-803e-a784-d3c1673dc217" class="bulleted-list"><li style="list-style-type:disc">Sketch</li></ul><p id="206935d6-d11d-806e-8e78-dc5aeb33c712" class="">আমাদের কোর্সে Photoshop থেকে শুরু করে সব টুলস শেখানো হয়।</p><p id="206935d6-d11d-8082-8347-fdaf61f99dbf" class=""><em>[ছবির জায়গা: ২০২৫ ওয়েব ডিজাইন ট্রেন্ড ইনফোগ্রাফিক - Dribbble বা Awwwards থেকে পাবেন]</em></p><h2 id="206935d6-d11d-80ab-a58b-dd3e7d7c6eaf" class="">ওয়েব ডিজাইন শেখার সম্পদ</h2><h3 id="206935d6-d11d-80f1-9912-d74cae63ca8c" class="">অনলাইন রিসোর্স</h3><p id="206935d6-d11d-8015-9813-fa36bd98f2db" class=""><strong>ফ্রি টিউটোরিয়াল:</strong></p><ul id="206935d6-d11d-80fb-8941-dd9bf46dc11b" class="bulleted-list"><li style="list-style-type:disc">YouTube</li></ul><ul id="206935d6-d11d-8023-a89b-f8a07526ac52" class="bulleted-list"><li style="list-style-type:disc">freeCodeCamp</li></ul><ul id="206935d6-d11d-8024-ae77-f38fdc289ecd" class="bulleted-list"><li style="list-style-type:disc">W3Schools</li></ul><ul id="206935d6-d11d-80f9-af20-c85e94816c41" class="bulleted-list"><li style="list-style-type:disc">MDN Web Docs</li></ul><p id="206935d6-d11d-80e3-8d90-f3070ebd5d3c" class=""><strong>প্রিমিয়াম কোর্স:</strong></p><ul id="206935d6-d11d-80ca-9e77-db5b4c295c56" class="bulleted-list"><li style="list-style-type:disc">Udemy</li></ul><ul id="206935d6-d11d-8044-9a31-e950dde16ebb" class="bulleted-list"><li style="list-style-type:disc">Coursera</li></ul><ul id="206935d6-d11d-8062-89aa-f14e22f3fd73" class="bulleted-list"><li style="list-style-type:disc">edX</li></ul><h3 id="206935d6-d11d-80ed-a7f9-fef611f40d59" class="">বই ও গাইড</h3><p id="206935d6-d11d-8031-8037-e958f8781160" class="">কিছু <a href="https://learncomputer.in/essential-books-for-website-designer-developers/">প্রয়োজনীয় বই</a> আমাদের ব্লগে লিস্ট করা আছে।</p><p id="206935d6-d11d-807b-8cd2-c53188c94ae1" class=""><strong>বাংলা বই:</strong></p><ul id="206935d6-d11d-8092-8801-d430299c1ad2" class="bulleted-list"><li style="list-style-type:disc">&quot;ওয়েব ডিজাইন শিখুন সহজে&quot;</li></ul><ul id="206935d6-d11d-8082-8829-cef37eaa38c4" class="bulleted-list"><li style="list-style-type:disc">&quot;HTML CSS জাভাস্ক্রিপ্ট গাইড&quot;</li></ul><p id="206935d6-d11d-8052-ba19-edf277ce51a5" class=""><strong>ইংরেজি বই:</strong></p><ul id="206935d6-d11d-80bd-8ffe-e7f619e1ef7e" class="bulleted-list"><li style="list-style-type:disc">&quot;Don&#x27;t Make Me Think&quot; by Steve Krug</li></ul><ul id="206935d6-d11d-8035-ad89-df0313a40513" class="bulleted-list"><li style="list-style-type:disc">&quot;The Design of Everyday Things&quot; by Don Norman</li></ul><p id="206935d6-d11d-8023-a496-f45f8893a930" class=""><em>[ছবির জায়গা: জনপ্রিয় ওয়েব ডিজাইন বইয়ের কভার - Amazon বা Goodreads থেকে পাবেন]</em></p><h2 id="206935d6-d11d-80d7-a2ae-d098b9a7b693" class="">প্র্যাকটিক্যাল টিপস</h2><h3 id="206935d6-d11d-8081-8384-e3c3284b8d71" class="">শুরু করার জন্য</h3><p id="206935d6-d11d-80d4-b102-f3fa775f10ac" class=""><strong>১. ছোট প্রজেক্ট দিয়ে শুরু করুন</strong></p><ul id="206935d6-d11d-805d-9564-f359e2c18e4a" class="bulleted-list"><li style="list-style-type:disc">সিম্পল ল্যান্ডিং পেজ</li></ul><ul id="206935d6-d11d-806d-a67a-fb005b2e1ad1" class="bulleted-list"><li style="list-style-type:disc">পার্সোনাল পোর্টফোলিও</li></ul><ul id="206935d6-d11d-804e-af2a-e8cab09a6d41" class="bulleted-list"><li style="list-style-type:disc">ব্যবসায়িক কার্ড ডিজাইন</li></ul><p id="206935d6-d11d-80b6-a445-ec3ea04c3e47" class=""><strong>২. অনুপ্রেরণা সংগ্রহ করুন</strong></p><ul id="206935d6-d11d-8010-9e5a-e27b8d637f73" class="bulleted-list"><li style="list-style-type:disc">Dribbble দেখুন</li></ul><ul id="206935d6-d11d-80cf-975a-f02dbc4b06f6" class="bulleted-list"><li style="list-style-type:disc">Behance ব্রাউজ করুন</li></ul><ul id="206935d6-d11d-80dd-978d-de03527f7185" class="bulleted-list"><li style="list-style-type:disc">Pinterest থেকে আইডিয়া নিন</li></ul><p id="206935d6-d11d-80a0-8879-f75b4190cbb3" class="">আমাদের <a href="https://learncomputer.in/the-only-web-design-inspiration-website-list-you-will-ever-need/">ইন্সপিরেশন লিস্ট</a> দেখতে পারেন।</p><p id="206935d6-d11d-80d5-bf7c-fe37a65a6b99" class=""><strong>৩. নিয়মিত প্র্যাকটিস করুন</strong></p><ul id="206935d6-d11d-805a-a701-de4b64518495" class="bulleted-list"><li style="list-style-type:disc">প্রতিদিন ১-২ ঘন্টা</li></ul><ul id="206935d6-d11d-80d5-b5b7-f2316e63ebb1" class="bulleted-list"><li style="list-style-type:disc">সপ্তাহে একটি নতুন প্রজেক্ট</li></ul><ul id="206935d6-d11d-803b-a436-fe43987777b2" class="bulleted-list"><li style="list-style-type:disc">বন্ধুদের জন্য ফ্রি কাজ করুন</li></ul><h3 id="206935d6-d11d-802e-9c38-ea76a2a2b7d4" class="">কমন ভুল এড়িয়ে চলুন</h3><p id="206935d6-d11d-806a-b467-c99770597d72" class=""><strong>১. খুব বেশি রঙ ব্যবহার</strong><br/>৩-৪টি রঙই যথেষ্ট।<br/></p><p id="206935d6-d11d-80ad-abe5-d1fa21dff415" class=""><strong>২. অপ্রয়োজনীয় এলিমেন্ট</strong><br/>সিম্পল রাখুন।<br/></p><p id="206935d6-d11d-80fa-8511-f25a2dfcb29c" class=""><strong>৩. মোবাইল ডিজাইন ভুলে যাওয়া</strong><br/>৭০% মানুষ মোবাইল ব্যবহার করে।<br/></p><p id="206935d6-d11d-804c-a2b1-dafdc9fa8bc6" class=""><em>[ছবির জায়গা: ওয়েব ডিজাইনের Do&#x27;s এবং Don&#x27;ts তুলনা - UXPin বা Smashing Magazine থেকে পাবেন]</em></p><h2 id="206935d6-d11d-8096-ae84-c7fdd6d3e00d" class="">টেকনিক্যাল স্কিলস ডেভেলপমেন্ট</h2><h3 id="206935d6-d11d-807b-aa96-cba2ce25ac84" class="">প্রয়োজনীয় সফটওয়্যার</h3><p id="206935d6-d11d-80a6-9d84-c6325bdad9bc" class=""><strong>ডিজাইন সফটওয়্যার:</strong></p><ul id="206935d6-d11d-80a2-a3b9-d9f716dee1f2" class="bulleted-list"><li style="list-style-type:disc">Adobe Photoshop (ইমেজ এডিটিং)</li></ul><ul id="206935d6-d11d-8020-b373-cf86cf0b9650" class="bulleted-list"><li style="list-style-type:disc">Adobe Illustrator (ভেক্টর ডিজাইন)</li></ul><ul id="206935d6-d11d-80e0-b99b-ce02ef442a2d" class="bulleted-list"><li style="list-style-type:disc">Figma (UI/UX ডিজাইন)</li></ul><p id="206935d6-d11d-80b4-a289-f786f088e552" class=""><strong>কোড এডিটর:</strong></p><ul id="206935d6-d11d-8052-8afa-f476bc949a9d" class="bulleted-list"><li style="list-style-type:disc">Visual Studio Code</li></ul><ul id="206935d6-d11d-8097-a274-dede9a2e7212" class="bulleted-list"><li style="list-style-type:disc">Sublime Text</li></ul><ul id="206935d6-d11d-80bb-be04-e0b2ebcb9d75" class="bulleted-list"><li style="list-style-type:disc">Notepad++</li></ul><p id="206935d6-d11d-80a8-92c0-d3b44f667b23" class=""><strong>ব্রাউজার টুলস:</strong></p><ul id="206935d6-d11d-8071-b0a2-e2d2ba2af06e" class="bulleted-list"><li style="list-style-type:disc">Chrome Developer Tools</li></ul><ul id="206935d6-d11d-804c-a18f-db023fa10c8e" class="bulleted-list"><li style="list-style-type:disc">Firefox Developer Tools</li></ul><h3 id="206935d6-d11d-8037-9b5d-dbc8be6a0a8b" class="">কোডিং স্কিলস</h3><p id="206935d6-d11d-807f-9cb7-fe012e2d02ea" class=""><strong>HTML এর মূল বিষয়:</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="206935d6-d11d-80e9-8dd2-fb6749e11253" class="code"><code class="language-HTML" style="white-space:pre-wrap;word-break:break-all">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;আমার ওয়েবসাইট&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;স্বাগতম&lt;/h1&gt;
+    &lt;p&gt;এটি আমার প্রথম ওয়েবসাইট।&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p id="206935d6-d11d-80fc-90b8-d23944cdc55d" class=""><strong>CSS এর ব্যবহার:</strong><br/>রঙ, ফন্ট, লেআউট কন্ট্রোল করার জন্য।<br/></p><p id="206935d6-d11d-8037-9b33-c5d7823f7897" class=""><strong>JavaScript এর প্রয়োজনীয়তা:</strong><br/>ইন্টারঅ্যাকটিভ ফিচার তৈরি করার জন্য।<br/></p><p id="206935d6-d11d-8037-81af-cedf5350e2ed" class="">আমাদের <a href="https://learncomputer.in/course/javascript/">JavaScript কোর্স</a> দেখতে পারেন।</p><h2 id="206935d6-d11d-8090-b9e4-f93c0ccba7de" class="">ওয়েব ডিজাইনের ভবিষ্যৎ</h2><h3 id="206935d6-d11d-800a-bcbf-f7e5278087ba" class="">নতুন প্রযুক্তি</h3><p id="206935d6-d11d-8015-b8ed-f57801b38e4a" class=""><strong>কৃত্রিম বুদ্ধিমত্তা (AI):</strong></p><ul id="206935d6-d11d-80d9-88af-e5cb6e4f3c3d" class="bulleted-list"><li style="list-style-type:disc">অটো ডিজাইন জেনারেশন</li></ul><ul id="206935d6-d11d-80fb-b982-f3b9245b619a" class="bulleted-list"><li style="list-style-type:disc">কালার প্যালেট সাজেশন</li></ul><ul id="206935d6-d11d-806c-afa9-e713e2215fb0" class="bulleted-list"><li style="list-style-type:disc">কনটেন্ট অপটিমাইজেশন</li></ul><p id="206935d6-d11d-80f3-a210-f2d1cc1f343c" class=""><strong>ভার্চুয়াল রিয়েলিটি (VR):</strong></p><ul id="206935d6-d11d-802d-bcc1-c2e50be8d235" class="bulleted-list"><li style="list-style-type:disc">ইমার্সিভ ওয়েব এক্সপেরিয়েন্স</li></ul><ul id="206935d6-d11d-8048-a496-eb07f982433c" class="bulleted-list"><li style="list-style-type:disc">3D ওয়েব ইন্টারফেস</li></ul><p id="206935d6-d11d-8085-9372-c4a9206b8863" class=""><strong>ভয়েস ইন্টারফেস:</strong></p><ul id="206935d6-d11d-80f8-9277-e8c249b80838" class="bulleted-list"><li style="list-style-type:disc">কণ্ঠস্বর নিয়ন্ত্রিত ওয়েবসাইট</li></ul><ul id="206935d6-d11d-8070-91d4-c51b41eefad2" class="bulleted-list"><li style="list-style-type:disc">স্মার্ট অ্যাসিস্ট্যান্ট ইন্টিগ্রেশন</li></ul><h3 id="206935d6-d11d-80e5-80ed-d2998a0ccd35" class="">ক্যারিয়ার সম্ভাবনা</h3><p id="206935d6-d11d-805f-92bf-c7065b6f3733" class=""><strong>২০২৫-২০৩০ পর্যন্ত চাহিদা:</strong></p><ul id="206935d6-d11d-8058-90b8-deea14b967d4" class="bulleted-list"><li style="list-style-type:disc">UI/UX ডিজাইনার: ৮৫% বৃদ্ধি</li></ul><ul id="206935d6-d11d-8061-a0e5-fab92af89580" class="bulleted-list"><li style="list-style-type:disc">ফ্রন্ট-এন্ড ডেভেলপার: ৬৫% বৃদ্ধি</li></ul><ul id="206935d6-d11d-8040-868c-e7ec50f3721f" class="bulleted-list"><li style="list-style-type:disc">ওয়েব ডিজাইনার: ৪৫% বৃদ্ধি</li></ul><p id="206935d6-d11d-804b-9e4f-ce8e20ef0ca0" class=""><strong>নতুন পদ:</strong></p><ul id="206935d6-d11d-806d-9120-fd03be849ed9" class="bulleted-list"><li style="list-style-type:disc">AI ডিজাইন স্পেশিয়ালিস্ট</li></ul><ul id="206935d6-d11d-8046-a154-f256cf40ec44" class="bulleted-list"><li style="list-style-type:disc">ভয়েস UI ডিজাইনার</li></ul><ul id="206935d6-d11d-805e-a1ce-e460c646c259" class="bulleted-list"><li style="list-style-type:disc">AR/VR ওয়েব ডিজাইনার</li></ul><p id="206935d6-d11d-80c1-8728-fbf48a766126" class=""><em>[ছবির জায়গা: ভবিষ্যতের ওয়েব ডিজাইন ক্যারিয়ার গ্রোথ চার্ট - Bureau of Labor Statistics বা LinkedIn থেকে পাবেন]</em></p><h2 id="206935d6-d11d-80b0-a8ee-d1e42e20d74a" class="">স্থানীয় বাজারে সুযোগ</h2><h3 id="206935d6-d11d-809f-bdc2-e7f07b2e6dd4" class="">পশ্চিমবঙ্গে ওয়েব ডিজাইনের চাহিদা</h3><p id="206935d6-d11d-80d2-8325-eeed644ed5c4" class=""><strong>কলকাতা:</strong><br/>বড় IT কোম্পানিগুলোর হাব।<br/></p><p id="206935d6-d11d-8087-b911-db6b43a0117f" class=""><strong>হাবড়া ও আশেপাশের এলাকা:</strong><br/>ছোট ব্যবসায়ীদের ওয়েবসাইটের চাহিদা বাড়ছে।<br/></p><p id="206935d6-d11d-807a-a6a6-edfba376870d" class=""><strong>উত্তর ২৪ পরগনা:</strong><br/>ডিজিটাল মার্কেটিং এজেন্সির সংখ্যা বাড়ছে।<br/></p><h3 id="206935d6-d11d-80c1-bc32-c232ab3d5144" class="">স্থানীয় ব্যবসায়ীদের চাহিদা</h3><p id="206935d6-d11d-806a-a60b-c29849448be1" class=""><strong>রেস্টুরেন্ট:</strong><br/>অনলাইন মেনু ও অর্ডার সিস্টেম।<br/></p><p id="206935d6-d11d-8031-aea8-d196a0cc512e" class=""><strong>কোচিং সেন্টার:</strong><br/>অনলাইন রেজিস্ট্রেশন সিস্টেম।<br/></p><p id="206935d6-d11d-80be-8429-de05186a3dc0" class=""><strong>দোকানপাট:</strong><br/>ই-কমার্স ওয়েবসাইট।<br/></p><p id="206935d6-d11d-80b7-8672-d72120c2e713" class="">আমাদের <a href="https://learncomputer.in/zero-to-hero-how-our-students-mastered-web-design-in-1-year/">স্টুডেন্ট সফলতার গল্প</a> পড়তে পারেন।</p><h2 id="206935d6-d11d-8048-823b-e2e4fed1f644" class="">প্র্যাকটিক্যাল গাইড</h2><h3 id="206935d6-d11d-806f-92eb-f4d68bcf0696" class="">পোর্টফোলিও তৈরি</h3><p id="206935d6-d11d-8005-8e18-ec851d69c862" class=""><strong>অবশ্যই থাকবে:</strong></p><ul id="206935d6-d11d-80a8-8fcd-cf27bc81eea6" class="bulleted-list"><li style="list-style-type:disc">নিজের ছবি ও পরিচয়</li></ul><ul id="206935d6-d11d-8083-b6b7-d2722bcc8516" class="bulleted-list"><li style="list-style-type:disc">সেরা ৫-৭টি প্রজেক্ট</li></ul><ul id="206935d6-d11d-8047-9975-f434a61b47ca" class="bulleted-list"><li style="list-style-type:disc">কন্ট্যাক্ট ইনফরমেশন</li></ul><ul id="206935d6-d11d-80f9-ad68-ec0fb8aa3ee6" class="bulleted-list"><li style="list-style-type:disc">টেস্টিমনিয়াল</li></ul><p id="206935d6-d11d-80c6-89c1-dc41ca3c73d5" class=""><strong>পোর্টফোলিও হোস্টিং:</strong></p><ul id="206935d6-d11d-8056-985b-f124e28a6807" class="bulleted-list"><li style="list-style-type:disc">GitHub Pages (ফ্রি)</li></ul><ul id="206935d6-d11d-8078-b05b-fd4e28226346" class="bulleted-list"><li style="list-style-type:disc">Netlify (ফ্রি)</li></ul><ul id="206935d6-d11d-80ba-9c39-ec530a8de704" class="bulleted-list"><li style="list-style-type:disc">WordPress.com (ফ্রি)</li></ul><p id="206935d6-d11d-8065-86bf-eac0370b3681" class="">আমাদের <a href="https://learncomputer.in/the-ultimate-guide-to-creating-a-portfolio-that-gets-you-hired/">পোর্টফোলিও গাইড</a> বিস্তারিত দেখুন।</p><h3 id="206935d6-d11d-80c6-a8b6-ff59317ae942" class="">ইন্টারভিউ প্রস্তুতি</h3><p id="206935d6-d11d-803b-8c94-ea14fb8641f3" class=""><strong>কমন প্রশ্ন:</strong></p><ul id="206935d6-d11d-809c-b8d0-c7b989fbf8d3" class="bulleted-list"><li style="list-style-type:disc">আপনার ডিজাইন প্রসেস কী?</li></ul><ul id="206935d6-d11d-80ad-b3bf-d74823a79b74" class="bulleted-list"><li style="list-style-type:disc">কেন এই কালার প্যালেট বেছে নিলেন?</li></ul><ul id="206935d6-d11d-8035-9b87-eb4bb35bd208" class="bulleted-list"><li style="list-style-type:disc">রেস্পন্সিভ ডিজাইন কী?</li></ul><p id="206935d6-d11d-809a-9fc3-c57255cc45e4" class=""><strong>প্রস্তুতি:</strong></p><ul id="206935d6-d11d-80bc-9ffc-fa2cbcb67aba" class="bulleted-list"><li style="list-style-type:disc">লাইভ প্রজেক্ট দেখানোর জন্য প্রস্তুত থাকুন</li></ul><ul id="206935d6-d11d-808a-955f-d55222ae4b63" class="bulleted-list"><li style="list-style-type:disc">ডিজাইন ডিসিশনের যুক্তি দিতে পারুন</li></ul><p id="206935d6-d11d-80e9-bc73-f59038a4f4d1" class="">আমাদের <a href="https://learncomputer.in/web-designer-interview-questions-and-answers-to-get-hired-fast/">ইন্টারভিউ প্রশ্ন গাইড</a> দেখুন।</p><p id="206935d6-d11d-80ae-887e-f9275c075a14" class=""><em>[ছবির জায়গা: সফল পোর্টফোলিও উদাহরণ - Dribbble বা Behance থেকে পাবেন]</em></p><h2 id="206935d6-d11d-80f4-8b5b-c28443d7c316" class="">কোর্স ও ট্রেনিং</h2><h3 id="206935d6-d11d-80d2-9383-f43c390a3f8f" class="">Learn Computer Academy কোর্স বিবরণ</h3><p id="206935d6-d11d-80e6-99da-e49fd8a850ce" class=""><strong>৬ মাস গ্রাফিক্স ডিজাইন:</strong></p><ul id="206935d6-d11d-80a1-a1a3-ff3ee9bffd85" class="bulleted-list"><li style="list-style-type:disc">Adobe Photoshop</li></ul><ul id="206935d6-d11d-8094-a33e-e7e80d5f0c31" class="bulleted-list"><li style="list-style-type:disc">কালার থিওরি</li></ul><ul id="206935d6-d11d-80cf-8d78-e263622f864a" class="bulleted-list"><li style="list-style-type:disc">টাইপোগ্রাফি</li></ul><ul id="206935d6-d11d-8002-8da3-ec04f9fb1710" class="bulleted-list"><li style="list-style-type:disc">ব্র্যান্ডিং ডিজাইন</li></ul><p id="206935d6-d11d-8079-adf5-d19f463a125d" class=""><strong>৬ মাস ওয়েব কোডিং:</strong></p><ul id="206935d6-d11d-8005-b6b5-d2e97190e138" class="bulleted-list"><li style="list-style-type:disc">HTML/CSS</li></ul><ul id="206935d6-d11d-80b1-ade2-e9db3dff2634" class="bulleted-list"><li style="list-style-type:disc">JavaScript</li></ul><ul id="206935d6-d11d-80db-9807-d44f015fc778" class="bulleted-list"><li style="list-style-type:disc">Bootstrap</li></ul><ul id="206935d6-d11d-80b3-bd55-df751dc59af0" class="bulleted-list"><li style="list-style-type:disc">jQuery</li></ul><p id="206935d6-d11d-80b9-af60-d1849a187c49" class=""><strong>কোর্স সুবিধা:</strong></p><ul id="206935d6-d11d-8075-8b39-f9e3a823b9cc" class="bulleted-list"><li style="list-style-type:disc">হ্যান্ডস-অন প্র্যাকটিস</li></ul><ul id="206935d6-d11d-80eb-b661-c3459cecf8d6" class="bulleted-list"><li style="list-style-type:disc">রিয়েল প্রজেক্ট এক্সপেরিয়েন্স</li></ul><ul id="206935d6-d11d-80aa-bf48-feff950fa8d9" class="bulleted-list"><li style="list-style-type:disc">চাকরির সহায়তা</li></ul><p id="206935d6-d11d-8058-b5ba-cfecfddae21d" class="">আমাদের অন্যান্য কোর্স:</p><ul id="206935d6-d11d-8031-be41-ca61e88b9b51" class="bulleted-list"><li style="list-style-type:disc"><a href="https://learncomputer.in/course/python-training/">Python ট্রেনিং</a></li></ul><ul id="206935d6-d11d-809e-9673-edfafb21c743" class="bulleted-list"><li style="list-style-type:disc"><a href="https://learncomputer.in/course/node-js-training/">Node.js ট্রেনিং</a></li></ul><ul id="206935d6-d11d-800e-a09d-c75916bb384e" class="bulleted-list"><li style="list-style-type:disc"><a href="https://learncomputer.in/course/mern-stack-training/">MERN Stack ট্রেনিং</a></li></ul><h3 id="206935d6-d11d-8001-96cc-f1be542801ee" class="">কেন Learn Computer Academy?</h3><p id="206935d6-d11d-8075-80bb-d4e5a716d51f" class=""><strong>১. অভিজ্ঞ প্রশিক্ষক</strong><br/>ইন্ডাস্ট্রি এক্সপেরিয়েন্স আছে।<br/></p><p id="206935d6-d11d-80f6-986e-f780864655f1" class=""><strong>২. আপডেটেড কারিকুলাম</strong><br/>বাজারের চাহিদা অনুযায়ী।<br/></p><p id="206935d6-d11d-80f7-90ed-d8fafe3a1dcc" class=""><strong>৩. প্র্যাকটিক্যাল এপ্রোচ</strong><br/>থিওরি কম, প্র্যাকটিস বেশি।<br/></p><h3 id="206935d6-d11d-8041-80e6-f27748de77d3" class="">আপনার স্বপ্নের ক্যারিয়ার</h3><p id="206935d6-d11d-8049-a274-dac7d6ff4e47" class="">আমাদের <a href="https://learncomputer.in/zero-to-hero-how-our-students-mastered-web-design-in-1-year/">সফল ছাত্রদের গল্প</a> দেখুন।</p><p id="206935d6-d11d-806b-b8e0-c8c921b4cb25" class=""><strong>মনে রাখবেন:</strong><br/>প্রতিটি এক্সপার্ট একসময় বিগিনার ছিল।<br/></p><p id="206935d6-d11d-80f8-8148-efffd3d03cd6" class="">আপনিও পারবেন।</p><p id="206935d6-d11d-8052-b27b-dd305d5c30f5" class="">শুধু শুরু করতে হবে।</p><p id="206935d6-d11d-80b2-a6dd-d0b00fef26b2" class=""><strong>যোগাযোগ করুন:</strong><br/>আমাদের <br/><a href="https://learncomputer.in/contact-us/">কন্ট্যাক্ট পেজে</a> আজই।</p><p id="206935d6-d11d-80be-9b07-e5d1fc7f4069" class="">আপনার <strong>ওয়েব ডিজাইন</strong> যাত্রা শুরু হোক আজ থেকেই।</p><p id="206935d6-d11d-80f6-b58d-f3e91438cb99" class="">ভবিষ্যৎ আপনার জন্য অপেক্ষা করছে।</p><p id="206935d6-d11d-8078-bfe0-dfae4037b3a4" class=""><em>[ছবির জায়গা: সফল ওয়েব ডিজাইনার ক্যারিয়ার জার্নি ইনফোগ্রাফিক - CareerBuilder বা Indeed Career Guide থেকে পাবেন]</em></p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
